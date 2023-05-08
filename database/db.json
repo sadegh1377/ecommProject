@@ -190,28 +190,28 @@
   ],
   "cart": [
     {
-      "name": "Samsung m 40 a ",
-      "price": "550",
-      "category": "mobile",
-      "color": "white",
-      "description": "this is a Samsung product",
-      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOO1JDPUNwcPiqzHYhaL_zpJA0Ymlr6mD9sSgTPad_JYdrk-o",
+      "name": "Nike Shoes",
+      "price": "3000",
+      "category": "Shoes",
+      "color": "Black",
+      "description": "Best shoes for Running",
+      "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1eeaacc0-e07c-4024-a5f7-57f2fd23e8a2/air-max-270-g-golf-shoe-Z6vCfs.png",
       "quantity": 1,
-      "productId": 1,
-      "userId": 3,
-      "id": 7
+      "productId": 4,
+      "userId": 5,
+      "id": 2
     },
     {
-      "name": "Levies Jeans",
-      "price": "5000",
-      "category": "Jeans",
-      "color": "blue",
-      "description": "Confirmable jeans for man ",
-      "image": "https://www.filmibeat.com/wimg/desktop/2012/12/13548612746596.jpg",
+      "name": "I phone 14",
+      "price": "100000",
+      "category": "mobile",
+      "color": "black",
+      "description": "An Apple Product",
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOO1JDPUNwcPiqzHYhaL_zpJA0Ymlr6mD9sSgTPad_JYdrk-o",
       "quantity": 1,
-      "productId": 5,
-      "userId": 3,
-      "id": 8
+      "productId": 2,
+      "userId": 5,
+      "id": 3
     }
   ],
   "orders": [

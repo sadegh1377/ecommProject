@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {login, signUp} from "../../domain/data-type";
+import {cart, login, product, signUp} from "../../domain/data-type";
 import {UserService} from "../services/user.service";
+import {ProductService} from "../services/product.service";
 
 @Component({
   selector: 'app-user-auth',
@@ -11,7 +12,7 @@ export class UserAuthComponent implements OnInit {
   showLogin: boolean = true
   authError: string = ""
 
-  constructor(private user: UserService) {
+  constructor(private user: UserService, private product: ProductService) {
   }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class UserAuthComponent implements OnInit {
 
   signUp(data: signUp) {
     this.user.userSignUp(data)
+    this.localCartToRemoteCart()
   }
 
   login(data: login) {
@@ -27,6 +29,8 @@ export class UserAuthComponent implements OnInit {
     this.user.invalidUserAuth.subscribe((result) => {
       if (result) {
         this.authError = "User not found"
+      } else {
+        this.localCartToRemoteCart()
       }
     })
   }
@@ -37,5 +41,39 @@ export class UserAuthComponent implements OnInit {
 
   openLogin() {
     this.showLogin = true
+  }
+
+  localCartToRemoteCart() {
+    let data = localStorage.getItem('localCart');
+    let user = localStorage.getItem('user')
+    let userId = user && JSON.parse(user).id
+    if (data) {
+      let cartDataList: product[] = JSON.parse(data);
+
+      cartDataList.forEach((product: product, index) => {
+        let cartData: cart = {
+          ...product,
+          productId: product.id,
+          userId
+        }
+        delete cartData.id;
+
+        // just because that the JsonServer can handle this request
+        setTimeout(() => {
+          this.product.addToCart(cartData).subscribe((result) => {
+            if (result) {
+            }
+          })
+        }, 500)
+        if (cartDataList.length === index + 1) {
+          localStorage.removeItem('localCart')
+        }
+      })
+    }
+    // just because that the JsonServer can handle this request
+    setTimeout(() => {
+      this.product.getCartList(userId);
+    }, 2000)
+
   }
 }
